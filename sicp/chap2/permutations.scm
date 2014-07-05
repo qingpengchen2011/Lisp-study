@@ -1,0 +1,10 @@
+(load "flatmap.scm")
+
+(define (permutations s)
+    (if (null? s)
+        (list '())
+        (flatmap (lambda (x)
+                     (map (lambda (p)
+                              (cons x p))
+                          (permutations (delete x s))))
+                 s)))

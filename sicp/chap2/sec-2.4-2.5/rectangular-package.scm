@@ -1,0 +1,27 @@
+(load "tag-content.scm")
+(define (install-rectangular-package)
+    ;;internal process
+    (define (square x) (* x x))
+    (define (myreal-part z)
+        (car z))
+    (define (myimag-part z)
+        (cdr z))
+    (define (make-from-real-imag x y) (cons x y))
+    (define (mymagnitude z)
+        (sqrt (+ (square (myreal-part z))
+	         (square (myimag-part z)))))
+    (define (myangle z)
+        (atan (myimag-part z) (myreal-part z)))
+    (define (make-from-mag-ang r a)
+        (cons (* r (cons a)) (* r (sin a))))
+    ;;interface to the rest of system
+    (define (tag x)  (attach-tag 'rectangular x))
+    (put 'real-part '(rectangular) myreal-part)
+    (put 'imag-part '(rectangular) myimag-part)
+    (put 'angle '(rectangular) myangle)
+    (put 'magnitude '(rectangular) mymagnitude)
+    (put 'make-from-real-image 'rectangular 
+					   (lambda (r i) (tag (make-from-real-imag r i))))
+    (put 'make-from-mag-ang 'rectangular 
+					   (lambda (m a) (tag (make-from-mag-ang m a))))
+    'done) 

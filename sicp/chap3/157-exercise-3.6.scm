@@ -1,0 +1,10 @@
+(define (rand)
+    (let ((x 1))
+         (lambda (arg)
+             (cond ((eq? arg 'generate) 
+			(set! x (rand-update x)) ;;need to impl rand-update
+                        x)
+                   ((eq? arg 'reset)
+                        (lambda (new-v)
+                            (set! x new-v)
+                            x))))))

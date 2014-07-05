@@ -1,0 +1,4 @@
+(define (make-tree)
+    (let ((root '()))
+        (define (make-record key value)
+             
