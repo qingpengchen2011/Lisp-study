@@ -9,7 +9,7 @@
 	  ((atom? (car l)) (lat? (cdr l)))
 	  (else '#f)))
 
- ;;define for member?
+ ;;define for member
 (define (member? m l)
     (cond ((null? l) '#f)
 	  (else
